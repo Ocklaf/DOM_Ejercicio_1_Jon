@@ -1,0 +1,147 @@
+/*  ************************* Reset CSS ************************ */
+html{
+    box-sizing: border-box;
+    font-family: var(--main-font);
+    font-size: var(--font-size);
+    scroll-behavior: smooth; /* para suavizar el movimiento de scroll */
+}
+
+
+/* Esto es una declaración de variables en CSS */
+:root{
+    --main-font: sans-serif; /* Cada variable, se declara con -- */
+    --font-size: 16px;
+    --main-color: #f7df1e;
+    --second-color: #222;
+    --main-modal-color: rgba(247, 222, 30, 0.85);
+    --second-modal-color: rgba(34, 34, 34, 0.85);
+    --container-width: 1200px;
+}
+
+*,
+*:before,
+*:after{
+    box-sizing: inherit; /* herencia para todos los box-sizing */
+}
+
+body{
+    margin: 0; /* Quitamos el margen por defecto del navegador, creo que debería estar en el reset css */
+    overflow-x: hidden; /* Todo lo que sobresale en X, que lo oculte, para que no haga la barra de scroll abajo */
+}
+
+img{
+    max-width: 100%; /* cuando tenga imágenes que ocupen el 100% del ancho */
+    height: auto;
+}
+
+/* ************ MENU DE HAMBURGUESA ********************* */
+
+.header {
+    /* sticky: cuando el header llegue al margen de 0 en top, lo deja como fijo */
+    position: sticky;
+    top: 0;
+    padding: 1rem;
+    background-color: var(--main-color);
+    color: var(--second-color);
+}
+
+.header h1{
+    margin: 0 auto; /* arriba y abajo 0 y auto a los lados, quitamos lo que tiene por defecto h1 */
+    text-align: center;
+}
+
+.section{ /* esto son  */
+    padding: 2rem;
+    padding-top: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: var(--container-width);
+    min-height: 100vh; /* view-port height */
+    text-align: center;
+}
+
+.panel{
+    position: fixed;
+    z-index: 998; /* Cuando aparece el panel, se queda 1 punto
+    por detrás del botón, porque si estuviese a la misma altura 
+    o delante, anularía el funcionamiento del botón, ya que 
+    aunque lo viésemos, estaría detrás del panel */
+    
+    /* Mediante top, bottom, left y right 0, "estira el panel" 
+    para cubrir toda la pantalla, lo posiciona estirado de todos
+    los lados al máximo, obligando a cubrir toda la pantalla */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: var(--second-modal-color);
+
+    /* El efecto de aparecer desde arriba suave */
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease; /* aplica transición al 
+    efecto transform, durante 0.3s y en modo "aceleración" */
+    
+    /* de arriba */
+    transform: translate(0, -100%); /* lo escondemos arriba en eje Y */
+    /* de abajo */
+    transform: translate(0, 100%);
+    /* de la derecha */
+    transform: translate(100%, 0);
+    /* de la izquierda */
+    transform: translate(-100%, 0);
+}
+
+/* si solo queremos opacity (un efecto fade in fade out)
+tenemos que quitar los transform translate y jugar sólo con
+opacity y los tiempos */
+
+.panel.is-active{
+    transform: translate(0, 0); /* lo bajamos abajo */
+    opacity: 1;
+}
+
+.menu{
+    width: inherit; /* Que herede la anchura de quien lo contiene */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+.menu a{
+    padding: 2rem;
+    width: inherit;
+    display: block;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--main-color);
+    transition: all 0.3s ease;
+}
+
+.menu a:hover{
+    font-weight: bold;
+    color: var(--second-color);
+    background-color: var(--main-modal-color);
+}
+
+.panel-btn{
+    position: fixed;
+    z-index: 999; /* Creo que dice que lo posiciona al frente 
+    del eje z, para que todo esté detrás del botón */
+    bottom: 1vh; /* lo pone abajo, porque si fuese en una mano 
+    en el móvil, es más fácil la usabilidad con una mano, si 
+    pones el menú de hamburguesa arriba, es para dos manos o se 
+    vuelve incómodo */
+    right: 1vw; /* 1 view-heigth */
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%; /* Con 50% se hacen redondos los bordes */
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-color);
+}
