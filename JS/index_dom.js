@@ -1,6 +1,6 @@
 import hamburgerMenu from "./menu_hamburguesa.js"; 
 import { digitalClock, alarm } from "./reloj.js";
-
+import { shortcuts, moveBall } from "./telcado.js";
 const d = document //para no escribir todo el rato document
 
 d.addEventListener("DOMContentLoaded", (e) => {
@@ -13,4 +13,9 @@ d.addEventListener("DOMContentLoaded", (e) => {
 //este no espera a que cargue la web imágenes, archivos... etc., 
 //por lo tanto es muchísimo más rápido que "Load". 
 //Le pasamos el evento de la carga llamando a la función
+
+d.addEventListener("keydown", (e) =>{
+    shortcuts(e)
+    moveBall(e, ".ball", ".stage")
+})
 

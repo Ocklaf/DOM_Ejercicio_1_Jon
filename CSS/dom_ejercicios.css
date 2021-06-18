@@ -145,3 +145,19 @@ opacity y los tiempos */
     align-items: center;
     background-color: var(--main-color);
 }
+
+/* **********     Eventos del Teclado     ********** */
+  
+.stage {
+    display: flex;
+    min-height: 50vh;
+    background-color: var(--second-color);
+  }
+  
+  .ball {
+    margin: auto;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: var(--main-color);
+  }
